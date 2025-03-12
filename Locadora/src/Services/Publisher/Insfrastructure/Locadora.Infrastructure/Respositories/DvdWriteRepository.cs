@@ -1,6 +1,7 @@
 ﻿using Locadora.Application.Contracts;
 using Locadora.Domain.Entities;
 using Locadora.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Locadora.Infrastructure.Respositories;
 
@@ -20,18 +21,22 @@ public class DvdWriteRepository : IDvdsWriteRepository
         return await _context.SaveChangesAsync() > 0;
     }
 
-    public Task<bool> Update(Dvd entity)
+    public async Task<bool> Update(Dvd entity)
     {
-        throw new NotImplementedException();
+        _context.Dvds.Update(entity);
+
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public Task<bool> Delete(Guid id)
+    public async Task<bool> Delete(Guid id)
     {
-        throw new NotImplementedException();
+        await _context.Dvds.Where(d => d.Id == id).ExecuteDeleteAsync();
+
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public Task<Dvd> Get(Guid id)
+    public async Task<Dvd> Get(Guid id)
     {
-        throw new NotImplementedException();
+        return await _context.Dvds.FindAsync(id);
     }
 }
