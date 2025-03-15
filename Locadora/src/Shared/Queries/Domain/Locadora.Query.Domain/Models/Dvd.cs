@@ -13,6 +13,6 @@ public class Dvd
     public int Copies { get; set; }
     public string DirectorId { get; set; }
     public DateTime CreatedAt { get; set; }
-    public DateTime UpdateAt { get; set; }
-    public DateTime DeleteAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+    public DateTime DeletedAt { get; set; }
 }
