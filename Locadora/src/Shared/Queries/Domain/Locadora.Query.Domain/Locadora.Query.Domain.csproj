@@ -10,4 +10,8 @@
     <PackageReference Include="MongoDB.Driver" Version="3.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BuildingBlocks\Locadora.Core\Locadora.Core.csproj" />
+  </ItemGroup>
+
 </Project>
