@@ -12,10 +12,7 @@ public class Director : Entity
     private List<Dvd> _dvds = new List<Dvd>();
     public IReadOnlyList<Dvd> Dvds => _dvds;
     
-    protected Director()
-    {
-        
-    }
+    protected Director() {}
 
     public Director(string name, string surname)
     {

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Locadora.Core.ValidationConstants;
 using Locadora.Core.ValidationMenssages;
 using Locadora.Domain.Entities;
 
@@ -6,10 +7,6 @@ namespace Locadora.Application.Features.Dvds.Commands.UpdateDvd;
 
 public class UpdateDvdCommandValidator : AbstractValidator<UpdateDvdCommand>
 {
-    private const string GENRE_ERROR_MESSAGE = "Invalid genre type";
-    private const int GENRE_ERROR_NUMBER = 19;
-    private const int COPIES_ERROR_NUMBER = -1;
-
     public UpdateDvdCommandValidator()
     {
         RuleFor(x => x.Id)
@@ -21,13 +18,13 @@ public class UpdateDvdCommandValidator : AbstractValidator<UpdateDvdCommand>
             .MaximumLength(Dvd.MAX_TITLE_LENGTH).WithMessage(ValidationMessages.MAX_LENGTH_ERROR_MESSAGE);
 
         RuleFor(x => x.Genre)
-            .LessThan(GENRE_ERROR_NUMBER).WithMessage(GENRE_ERROR_MESSAGE);
+            .LessThan(ValidationConstants.GENRE_ERROR_NUMBER).WithMessage(ValidationConstants.GENRE_ERROR_MESSAGE);
 
         RuleFor(x => x.Published)
             .LessThan(DateTime.Now).WithMessage(ValidationMessages.ERROR_MESSAGE);
 
         RuleFor(x => x.Copies)
-            .GreaterThan(COPIES_ERROR_NUMBER).WithMessage(ValidationMessages.ERROR_MESSAGE);
+            .GreaterThan(ValidationConstants.COPIES_ERROR_NUMBER).WithMessage(ValidationMessages.ERROR_MESSAGE);
 
         RuleFor(x => x.DirectorId)
             .NotEqual(Guid.Empty).WithMessage(ValidationMessages.ERROR_MESSAGE);
